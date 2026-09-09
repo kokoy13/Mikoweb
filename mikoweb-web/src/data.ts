@@ -2,7 +2,7 @@
 export const WA_LINK =
   "https://wa.me/62895411029846?text=Halo%20Mikoweb%2C%20saya%20mau%20pesan%20website.";
 
-export const PHONE_DISPLAY = "+62 895-4102-9846";
+export const PHONE_DISPLAY = "+62 895-4110-29846";
 export const PHONE_LINK = "tel:+62895411029846";
 export const ADDRESS = "Jl. Rimbo Kaluang No. 12, Padang";
 

@@ -57,8 +57,9 @@ function Navbar() {
   return (
     <header className="sticky top-0 z-30 bg-paper-white">
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6 md:h-[72px]">
-        <a href="#top" className="text-[18px] font-semibold tracking-tight text-deep-forest">
-          Mikoweb
+        <a href="#top" className="flex items-center gap-2">
+          <img src="/logo.png" alt="Logo Mikoweb" width={32} height={32} className="h-8 w-auto" />
+          <span className="text-[18px] font-semibold tracking-tight text-deep-forest">Mikoweb</span>
         </a>
         <nav aria-label="Navigasi utama" className="hidden items-center gap-2 lg:flex">
           {NAV.map((item) => (
@@ -323,7 +324,10 @@ function Footer() {
       <div className="mx-auto max-w-[1200px] px-6 py-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <p className="text-[18px] font-semibold text-deep-forest">Mikoweb</p>
+            <p className="flex items-center gap-2">
+              <img src="/logo.png" alt="Logo Mikoweb" width={36} height={36} className="h-9 w-auto" />
+              <span className="text-[18px] font-semibold text-deep-forest">Mikoweb</span>
+            </p>
             <p className="mt-3 max-w-[36ch] text-[14px] font-normal leading-[1.3] text-charcoal">
               Jasa website untuk UMKM Indonesia. Tulisan promosi rapi, foto asli, live cepat.
             </p>
