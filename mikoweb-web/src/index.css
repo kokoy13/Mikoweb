@@ -104,6 +104,14 @@ body {
 .btn-ghost-m:active {
   transform: translateY(1px) scale(0.98);
 }
+.btn-ghost-light-m {
+  border-color: var(--color-paper-white);
+  color: var(--color-paper-white);
+}
+.btn-ghost-light-m:hover {
+  background: var(--color-paper-white);
+  color: var(--color-deep-forest);
+}
 
 .tag {
   display: inline-flex;

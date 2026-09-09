@@ -1,6 +1,6 @@
 // dummy: angka berikut ilustratif, ganti data asli sebelum produksi
 export const WA_LINK =
-  "https://wa.me/62895411029846?text=Halo%20mikoweb%2C%20saya%20mau%20pesan%20website.";
+  "https://wa.me/62895411029846?text=Halo%20Mikoweb%2C%20saya%20mau%20pesan%20website.";
 
 export const PHONE_DISPLAY = "+62 895-4102-9846";
 export const PHONE_LINK = "tel:+62895411029846";
@@ -25,16 +25,16 @@ export type Layanan = {
 export const layanan: Layanan[] = [
   {
     name: "Landing Page",
-    desc: "Satu halaman fokus jualan, copy Indonesia, siap iklan.",
+    desc: "Satu halaman fokus jualan, tulisan promosi Indonesia, siap iklan.",
     price: "Mulai Rp1,5jt",
     icon: "globe",
   },
   {
     name: "Company Profile",
-    desc: "Website perusahaan lengkap, paling dipesan UMKM.",
+    desc: "Profil perusahaan lengkap: beranda, layanan, galeri, kontak.",
     price: "Mulai Rp3jt",
     icon: "buildings",
-    tag: "Populer",
+    tag: "Lengkap",
   },
   {
     name: "Redesign Website",
@@ -122,7 +122,7 @@ export const testimonials = [
     quote: "Tarif jelas di web bikin pasien datang sudah yakin.",
     name: "Pemilik Klinik",
     role: "Klien Senyum+",
-    initials: "S+",
+    initials: "SK",
   },
   {
     quote: "Booking online jalan, antrean kasir berkurang banyak.",

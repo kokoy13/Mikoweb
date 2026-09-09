@@ -10,7 +10,9 @@ import {
   PaintBrush,
   Phone,
   Wrench,
+  X,
 } from "@phosphor-icons/react";
+import { useState } from "react";
 import { Reveal } from "./components/Reveal";
 import {
   ADDRESS,
@@ -32,8 +34,6 @@ const NAV = [
   { label: "Testimoni", href: "#testimoni" },
 ];
 
-const STACK = ["react", "typescript", "tailwindcss", "vite"];
-
 function LayananIcon({ icon, className = "" }: { icon: Layanan["icon"]; className?: string }) {
   const props = { size: 24, weight: "regular" as const, className };
   switch (icon) {
@@ -53,11 +53,12 @@ function LayananIcon({ icon, className = "" }: { icon: Layanan["icon"]; classNam
 }
 
 function Navbar() {
+  const [open, setOpen] = useState(false);
   return (
     <header className="sticky top-0 z-30 bg-paper-white">
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6 md:h-[72px]">
         <a href="#top" className="text-[18px] font-semibold tracking-tight text-deep-forest">
-          mikoweb
+          Mikoweb
         </a>
         <nav aria-label="Navigasi utama" className="hidden items-center gap-2 lg:flex">
           {NAV.map((item) => (
@@ -74,11 +75,40 @@ function Navbar() {
           <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn-fill">
             Pesan Website
           </a>
-          <a href="#layanan" aria-label="Buka layanan" className="flex h-11 w-11 items-center justify-center rounded border border-ink-black text-deep-forest lg:hidden">
-            <List size={18} />
-          </a>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label={open ? "Tutup menu" : "Buka menu"}
+            className="flex h-11 w-11 items-center justify-center rounded border border-ink-black text-deep-forest lg:hidden"
+          >
+            {open ? <X size={18} /> : <List size={18} />}
+          </button>
         </div>
       </div>
+      {open && (
+        <nav aria-label="Navigasi seluler" className="border-t border-ink-black/10 bg-paper-white px-6 py-4 lg:hidden">
+          {NAV.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="block py-3 text-[16px] font-medium text-deep-forest"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setOpen(false)}
+            className="btn-fill mt-2 w-full"
+          >
+            Pesan Website
+          </a>
+        </nav>
+      )}
     </header>
   );
 }
@@ -102,7 +132,7 @@ function Hero() {
             Website cepat untuk bisnis sibuk
           </h1>
           <p className="mt-6 max-w-[44ch] text-[16px] font-normal leading-[1.3] text-charcoal">
-            Desain dan development website untuk UMKM Indonesia. Copy rapi, foto asli, booking via WhatsApp.
+            Desain dan development website untuk UMKM Indonesia. Tulisan promosi rapi, foto asli, booking via WhatsApp.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn-fill">
@@ -112,34 +142,13 @@ function Hero() {
               Lihat Portofolio
             </a>
           </div>
-          <div className="mt-8 rounded-2xl bg-deep-forest p-6">
-            <p className="eyebrow text-chartreuse-lime">Live sekarang</p>
-            <p className="mt-2 text-[36px] font-normal leading-none text-paper-white">3</p>
-            <p className="mt-1 text-[16px] font-normal text-paper-white">website UMKM tayang dan menerima booking</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TrustStrip() {
-  return (
-    <section aria-label="Teknologi yang dipakai" className="bg-pale-sage">
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-6 px-6 pb-14 md:flex-row md:items-center md:justify-between">
-        <p className="text-[16px] font-medium text-deep-forest">Dibangun dengan</p>
-        <div className="flex items-center gap-8">
-          {STACK.map((s) => (
-            <img
-              key={s}
-              src={`https://cdn.simpleicons.org/${s}/043f2e`}
-              alt={s}
-              width={96}
-              height={28}
-              loading="lazy"
-              className="h-7 w-auto opacity-90"
-            />
-          ))}
+          <a href="#portofolio" className="mt-8 flex items-center justify-between gap-4 rounded-2xl bg-deep-forest p-6">
+            <div>
+              <p className="eyebrow text-chartreuse-lime">Contoh nyata</p>
+              <p className="mt-2 text-[22px] font-normal leading-[1.2] text-paper-white">Lihat demo live website</p>
+            </div>
+            <ArrowSquareOut size={24} className="shrink-0 text-chartreuse-lime" />
+          </a>
         </div>
       </div>
     </section>
@@ -168,7 +177,7 @@ function Layanan() {
                   {item.name}
                 </h3>
                 <p className="mt-2 text-[16px] font-normal leading-[1.3] text-charcoal">{item.desc}</p>
-                <p className="mt-4 text-[18px] font-medium text-deep-forest">{item.price}</p>
+                <p className="mt-4"><span className="inline-flex rounded bg-chartreuse-lime px-3 py-1 text-[16px] font-medium text-ink-black">{item.price}</span></p>
               </article>
             </Reveal>
           ))}
@@ -185,7 +194,7 @@ function Portofolio() {
         <Reveal>
           <p className="eyebrow text-deep-forest">Portofolio</p>
           <h2 className="heading-56 mt-3 max-w-[18ch] text-deep-forest">
-            Tiga web live, tiga bisnis jalan
+            Contoh website yang sudah tayang
           </h2>
         </Reveal>
         <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -298,7 +307,7 @@ function Kontak() {
             <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn-fill">
               Pesan Website
             </a>
-            <a href={PHONE_LINK} className="btn-ghost-m !border-paper-white !text-paper-white hover:!bg-paper-white hover:!text-deep-forest">
+            <a href={PHONE_LINK} className="btn-ghost-m btn-ghost-light-m">
               <Phone size={16} /> {PHONE_DISPLAY}
             </a>
           </div>
@@ -314,9 +323,9 @@ function Footer() {
       <div className="mx-auto max-w-[1200px] px-6 py-14">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <p className="text-[18px] font-semibold text-deep-forest">mikoweb</p>
+            <p className="text-[18px] font-semibold text-deep-forest">Mikoweb</p>
             <p className="mt-3 max-w-[36ch] text-[14px] font-normal leading-[1.3] text-charcoal">
-              Jasa website untuk UMKM Indonesia. Desain rapi, copy Indonesia, live cepat.
+              Jasa website untuk UMKM Indonesia. Tulisan promosi rapi, foto asli, live cepat.
             </p>
           </div>
           <div className="flex flex-col gap-3 text-[14px] font-medium text-deep-forest">
@@ -332,7 +341,7 @@ function Footer() {
           </div>
         </div>
         <p className="mt-10 text-[12px] font-normal text-charcoal">
-          Hak Cipta 2026 mikoweb
+          Hak Cipta 2026 Mikoweb
         </p>
       </div>
     </footer>
@@ -345,7 +354,6 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <TrustStrip />
         <Layanan />
         <Portofolio />
         <Proses />
